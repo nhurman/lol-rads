@@ -1,0 +1,62 @@
+//--------------------------------------
+//--- 010 Editor v5.0 Binary Template
+//
+// File:
+// Author:
+// Revision:
+// Purpose:
+//--------------------------------------
+
+typedef struct {
+    char     magic[4];
+    uint32   version;
+    uint32   managerIndex;
+    uint32   fileListOffset;
+    uint32   pathListOffset;
+} RAF_HEADER;
+
+typedef struct {
+    char    pathHash[4];
+    uint32  dataOffset;
+    uint32  dataSize;
+    uint32  pathListIndex;
+} FILE_ENTRY;
+
+typedef struct {
+    uint32  stringOffset;
+    uint32  stringSize;
+} PATH_ENTRY;
+
+typedef struct {
+    uint32  numberOfFiles;
+    FILE_ENTRY fileEntries[numberOfFiles];
+} FILES_LIST;
+
+typedef struct {
+    uint32  sizeOfPaths;
+    uint32  numberOfPaths;
+    PATH_ENTRY pathEntries[numberOfPaths];
+} PATHS_LIST;
+
+LittleEndian(); 
+
+SetBackColor( cLtGray );
+RAF_HEADER header;
+
+SetBackColor( cLtGreen );
+FILES_LIST filesList;
+
+SetBackColor( cLtPurple );
+PATHS_LIST pathsList;
+
+SetBackColor( cLtYellow );
+local int len = 0, i;
+for (i = 0; i < pathsList.numberOfPaths; ++i) {
+    len += pathsList.pathEntries[i].stringSize;
+}
+
+char strings[len];
+
+
+//
+//STRING strings[stringLen];

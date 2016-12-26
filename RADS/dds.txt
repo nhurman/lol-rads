@@ -1,0 +1,5 @@
+From https://code.google.com/archive/p/nvidia-texture-tools/downloads:
+
+https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/nvidia-texture-tools/nvidia-texture-tools-svn-171008_win32-bin.zip
+
+Then run "nvdecompress.exe file.dds"
